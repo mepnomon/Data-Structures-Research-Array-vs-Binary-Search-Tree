@@ -14,12 +14,16 @@ import java.util.logging.Logger;
  */
 public class BSTObj {
     
-    private String[] data;
+    private int[] tempData;
     private int[] arr;
+    private static int[] writeData;
     private int steps;
     private Random generator;
-    BST tree;
-    CSVWriter writer;
+    private final int TRIALS = 1000;
+    private BST tree;
+    private CSVWriter writer;
+    private int treeSize;
+    private float averageCompares;
     
     /**
      * Constructor for BSTObj
@@ -27,24 +31,16 @@ public class BSTObj {
      */
     public BSTObj(int treeSize){
         
+        this.treeSize = treeSize;
         generator = new Random();
         tree = new BST();
-        try {
-            writer = new CSVWriter(new FileWriter("bstdata.csv"), ',',
-                    CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.NO_ESCAPE_CHARACTER);
-        } catch (IOException ex) {
-            Logger.getLogger(BSTObj.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        tempData = new int[TRIALS];
         arr = new int[treeSize];
         arr = populateArray(arr);
         arr = shuffleArray(arr);
         tree = populateBST(arr);
-        int target = generator.nextInt(treeSize);
-        System.out.println("Target:" + target);
-        steps = tree.search(target);
-        System.out.println("Steps:" + steps);
-        //data = Integer.toString(steps);
-        //writer.writeNext(String[] steps);
+        tempData = runTest(tree);
+        calculateAverage(tempData);
     }
     
     private BST populateBST(int[] arr){
@@ -93,5 +89,35 @@ public class BSTObj {
             
             System.out.print(arr[i] + ", ");
         }
+    }
+    
+    private int[] runTest(BST tree){
+        
+        for(int i = 0; i < TRIALS; i++){
+            
+            int target = generator.nextInt(treeSize);
+            //System.out.println("Target:" + target);
+            steps = tree.search(target);
+            //System.out.println("Steps:" + steps);
+            tempData[i] = tree.search(target);
+        }
+        return tempData;
+    }
+    
+    private void calculateAverage(int[] tempData){
+        float tempVar = 0;
+        for(int i = 0; i < TRIALS; i++){
+            
+                tempVar += tempData[i];
+  
+        }
+        
+        averageCompares = (tempVar / TRIALS);
+        //System.out.println("avg: " + averageCompares);
+    }
+    
+    public float getAverage(){
+        
+        return averageCompares;
     }
 }
