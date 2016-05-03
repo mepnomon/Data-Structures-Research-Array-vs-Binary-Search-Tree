@@ -26,29 +26,21 @@ public class BST {
         int direction = 0;
         int comparisonCount = 0; //counter for traversed nodes
         BSTNode curr = root;
-        //System.out.println("root" + curr.element);
         for(;;){
             ++comparisonCount;
             if (curr == null){
-                //return count;
-                System.out.println("Not found");
                 return 0;
                 
             }
             direction = target.compareTo(curr.element);
             //count++;
             if(direction == 0){
-                 //return count;
-                 //System.out.println("Found after" + (comparisonCount-1) + "steps");
                  return comparisonCount;
             } else if(direction < 0){
                 curr = curr.left;
-                //System.out.println("curr left" + curr.left.element);
             } else { //if > 0
                 curr = curr.right;
-                //System.out.println("curr right" + curr.right.element);
             }       
-            //System.out.println("traversed");
         }
     }
     
