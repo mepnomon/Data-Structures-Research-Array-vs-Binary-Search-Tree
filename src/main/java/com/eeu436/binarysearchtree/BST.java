@@ -26,7 +26,7 @@ public class BST {
         int direction = 0;
         int comparisonCount = 0; //counter for traversed nodes
         BSTNode curr = root;
-        System.out.println("root" + curr.element);
+        //System.out.println("root" + curr.element);
         for(;;){
             ++comparisonCount;
             if (curr == null){

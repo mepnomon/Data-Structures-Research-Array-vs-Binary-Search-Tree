@@ -2,7 +2,11 @@
 package com.eeu436.binarysearchtree;
 
 import com.opencsv.CSVWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -10,7 +14,9 @@ import java.util.Random;
  */
 public class BSTObj {
     
+    private String[] data;
     private int[] arr;
+    private int steps;
     private Random generator;
     BST tree;
     CSVWriter writer;
@@ -23,14 +29,22 @@ public class BSTObj {
         
         generator = new Random();
         tree = new BST();
+        try {
+            writer = new CSVWriter(new FileWriter("bstdata.csv"), ',',
+                    CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.NO_ESCAPE_CHARACTER);
+        } catch (IOException ex) {
+            Logger.getLogger(BSTObj.class.getName()).log(Level.SEVERE, null, ex);
+        }
         arr = new int[treeSize];
         arr = populateArray(arr);
         arr = shuffleArray(arr);
         tree = populateBST(arr);
         int target = generator.nextInt(treeSize);
-        System.out.println("Found in " + tree.search(target));
-        
-        //System.out.println("Found in: " + tree.search(generator.nextInt(treeSize)));
+        System.out.println("Target:" + target);
+        steps = tree.search(target);
+        System.out.println("Steps:" + steps);
+        //data = Integer.toString(steps);
+        //writer.writeNext(String[] steps);
     }
     
     private BST populateBST(int[] arr){

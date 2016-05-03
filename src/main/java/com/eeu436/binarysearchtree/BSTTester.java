@@ -17,8 +17,10 @@ public class BSTTester {
         
         Random generator = new Random();
         
-        BSTObj tree = new BSTObj(10000);
-        tree.printArray();
+        for(int i = 0; i < 1000; i++){
+            BSTObj tree = new BSTObj(10000);
+        }
+        //tree.printArray();
         
         //System.out.println("RNG Test");
         //System.out.println(generator.nextInt(1000));
