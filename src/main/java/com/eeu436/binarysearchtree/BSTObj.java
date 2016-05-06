@@ -4,7 +4,9 @@ package com.eeu436.binarysearchtree;
 import java.util.Random;
 
 /**
- *
+ *ICP 2027 - Assignment 2
+ * Due: 2016-05-06
+ * BST Object
  * @author eeu436
  */
 public class BSTObj {
@@ -38,6 +40,12 @@ public class BSTObj {
         calculateAverage(tempData);
     }
     
+    /**
+     * Populates the Binary Search Tree
+     * with random keys.
+     * @param arr
+     * @return a populated tree
+     */
     private BST populateBST(int[] arr){
         
         for(int i = 0; i < arr.length; i++){
@@ -47,9 +55,9 @@ public class BSTObj {
     }
     
     /**
-     * 
+     * Linearly populates an array.
      * @param arr
-     * @return 
+     * @return a populated array
      */
     private int[] populateArray(int[] arr){
         
@@ -78,9 +86,10 @@ public class BSTObj {
     }
        
     /**
-     * 
+     * Generates a random integer and 
+     * searches for it.
      * @param tree
-     * @return 
+     * @return an array with the number of comparisons for each search.
      */
     private int[] searchRndTarget(BST tree){
         
@@ -93,13 +102,13 @@ public class BSTObj {
     }
     
     /**
-     * 
+     * Calculates the average number of comparisons for 1000
+     * trials.
      * @param tempData 
      */
     private void calculateAverage(int[] tempData){
         float tempVar = 0;
         for(int i = 0; i < TRIALS; i++){
-            
             tempVar += tempData[i];
         }
         avgComparisons = (tempVar / TRIALS);

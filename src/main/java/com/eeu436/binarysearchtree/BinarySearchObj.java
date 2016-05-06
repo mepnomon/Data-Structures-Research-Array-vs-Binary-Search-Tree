@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- *
+ *ICP 2027 - Assignment 2
+ * Due: 2016-05-06
+ * Binary Search Object
  * @author eeu436
  */
 public class BinarySearchObj {
@@ -20,6 +22,7 @@ public class BinarySearchObj {
     
     /**
      * Constructor for Binary Search Object
+     * @param arrSize
      */
     public BinarySearchObj(int arrSize){
         
@@ -44,7 +47,10 @@ public class BinarySearchObj {
         }
     }
     
-    
+    /**
+     * Generates a random integer, searches for it
+     * and stores number of comparisons in an array.
+     */
     private void searchRndTarget(){
         
         for(int i = 0; i < TRIALS; i++){

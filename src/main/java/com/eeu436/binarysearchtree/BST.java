@@ -1,6 +1,8 @@
 package com.eeu436.binarysearchtree;
 
 /**
+ * ICP 2027 - Assignment 2
+ * Due: 2016-05-06
  * Implementation of a binary search tree.
  * @author eeu436
  */
@@ -55,7 +57,7 @@ public class BST {
         for(;;){
             
             if(curr == null){    
-            BSTNode ins = new BSTNode(elem);
+                BSTNode ins = new BSTNode(elem);
             
                 if(root == null)
                     root = ins;
